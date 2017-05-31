@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development nodemon server/index --exec babel-node",
-    "test-integration": "NODE_ENV=test mocha --opts test/**/mocha.opts test/**/*.js ",
-    "test-unit": "NODE_ENV=test mocha ",
+    "test": "NODE_ENV=test mocha --opts test/**/mocha.opts test/**/*.js ",
     "lint": "eslint '**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix"
   },

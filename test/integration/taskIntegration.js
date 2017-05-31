@@ -19,7 +19,7 @@ describe('Route Tasks', () => {
   });
 
 
-  describe('POST /tasks', () => {
+  describe('POST /api/tasks', () => {
     describe('status 200', () => {
       it('creates a new task', (done) => {
         request.post('/api/tasks')
@@ -48,7 +48,7 @@ describe('Route Tasks', () => {
   });
 
 
-  describe('GET /tasks/:id', () => {
+  describe('GET /api/tasks/:id', () => {
     describe('status 200', () => {
       it('returns one task', done => {
         request.get(`/api/tasks/${defaultTask[0]._id}`)
