@@ -1,0 +1,46 @@
+{
+  "name": "Todoserver",
+  "version": "1.0.0",
+  "description": "My personal to do list app",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development nodemon server/index --exec babel-node",
+    "test-integration": "NODE_ENV=test mocha --opts test/**/mocha.opts test/**/*.js ",
+    "test-unit": "NODE_ENV=test mocha ",
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "eslint '**/*.js' --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IgorVieira/Olga.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IgorVieira/Olga/issues"
+  },
+  "homepage": "https://github.com/IgorVieira/Olga#readme",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "consign": "^0.1.2",
+    "express": "^4.14.0",
+    "mongo-sanitize": "^1.0.0",
+    "mongoose": "^4.7.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.13.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "mocha": "^3.2.0",
+    "supertest": "^2.0.1"
+  }
+}
