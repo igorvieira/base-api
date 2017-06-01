@@ -4,7 +4,8 @@
   "description": "My personal to do list app",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon server/index --exec babel-node",
+    "start":"NODE_ENV=production ./node_modules/.bin/babel-node server/index",
+    "dev": "NODE_ENV=development nodemon server/index --exec babel-node",
     "test": "NODE_ENV=test mocha --opts test/**/mocha.opts test/**/*.js ",
     "lint": "eslint '**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix"
