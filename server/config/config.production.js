@@ -1,7 +1,7 @@
 export default {
   isTest: false,
   server: {
-    port: process.env.PORT || 8080,
+    port: process.env.PORT,
     host: 'https://api-vuejs.herokuapp.com/',
   },
   bodyParser: {
