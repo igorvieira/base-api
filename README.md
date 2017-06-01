@@ -14,7 +14,7 @@
 ## Usage
 
 ```
-  https://github.com/IgorVieira/base-api.git
+ git clone https://github.com/IgorVieira/base-api.git
 ```
 ```
  npm install
