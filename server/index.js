@@ -7,6 +7,14 @@ import config from './config';
 const app = express();
 
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+});
+
+
 require('./database')(config.mongodb.uri);
 
 app.use(express.static('./client'));
