@@ -17,7 +17,7 @@ module.exports = (app) => {
       done: req.body.done,
     };
     if (taskId) {
-      Tasks.findByIdAndUpdate(data)
+      Tasks.update({ _id: taskId }, { $set: data })
       .then(task => res.json(task), err => console.log(`${err}`));
     } else {
       Tasks.create(data)
