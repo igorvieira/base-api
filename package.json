@@ -25,7 +25,7 @@
     "supertest": "^2.0.1"
   },
   "scripts": {
-    "start": "sh ./custom.sh && NODE_ENV=production ./node_modules/.bin/babel-node server/index",
+    "start": "sh ./custom.sh && NODE_ENV=production babel-node server/index",
     "dev": "NODE_ENV=development nodemon server/index --exec babel-node",
     "test": "NODE_ENV=test mocha --opts test/**/mocha.opts test/**/*.js ",
     "lint": "eslint '**/*.js'",
