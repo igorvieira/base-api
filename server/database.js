@@ -3,7 +3,10 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 
 module.exports = (uri) => {
-  mongoose.connect(uri);
+  mongoose
+  .connect(uri, {
+    useMongoClient: true,
+  });
   mongoose.connection.on('connected', () => {
     console.log(`Mongoose! Connected in:${uri}`);
   });
