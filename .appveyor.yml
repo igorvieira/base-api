@@ -1,9 +1,11 @@
 environment:
   nodejs_version: "6"
-  NODE_ENV: "test"
 
 services:
   - mongodb
+
+before_test:
+  - cmd: set PATH=%NODE_ENV%;test
   
 test_script:
   - npm test
