@@ -1,9 +1,11 @@
 environment:
   nodejs_version: "6"
-  matrix:
-  - db: mongodb
+
+services:
+  - mongodb
   
-test_script:
-  - npm test
+env:
+  global:
+  - NODE_ENV: test
 
 build: off
