@@ -1,6 +1,6 @@
 environment:
   nodejs_version: "6"
-  NODE_ENV:test
+  NODE_ENV: "test"
 
 services:
   - mongodb
