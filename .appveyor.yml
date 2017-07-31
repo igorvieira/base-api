@@ -3,9 +3,9 @@ environment:
 
 services:
   - mongodb
-  
-env:
-  global:
-  - NODE_ENV: test
+
+before_test:
+    - cmd:set NODE_ENV=test
+
 
 build: off
