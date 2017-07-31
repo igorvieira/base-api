@@ -3,11 +3,17 @@ environment:
 
 services:
   - mongodb
-
+  
 before_test:
   - cmd: set PATH=%NODE_ENV%;test
-  
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
 test_script:
+  - node --version
+  - npm --version
   - npm test
 
 
