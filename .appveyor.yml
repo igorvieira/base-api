@@ -1,0 +1,7 @@
+environment:
+  nodejs_version: "6"
+  matrix:
+  - db: mongodb
+  
+test_script:
+  - npm test
