@@ -4,8 +4,9 @@ environment:
 
 services:
   - mongodb
-
-
+  
+test_script:
+  - npm test
 
 
 build: off
