@@ -29,7 +29,6 @@
     "dev": "NODE_ENV=development nodemon server/index --exec babel-node",
     "dev-windows": "set NODE_ENV=development&& nodemon server/index --exec babel-node",
     "test": "NODE_ENV=test mocha --opts test/**/mocha.opts test/**/*.js ",
-    "test-windows": "set NODE_ENV=test&& nodemon server/index --exec babel-node",
     "lint": "eslint '**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix"
   },
