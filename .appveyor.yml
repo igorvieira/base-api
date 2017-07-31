@@ -6,7 +6,7 @@ services:
   
 before_test:
   - cmd: set PATH=%NODE_ENV%;test
-  - cmd: set PATH "%PATH%;C:\Program Files\nodejs"
+  - cmd: set PATH="%PATH%;C:\Program Files\nodejs"
 
 install:
   - ps: Install-Product node $env:nodejs_version
