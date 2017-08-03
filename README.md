@@ -1,7 +1,6 @@
 # Base API
 
 [![Build Status](https://travis-ci.org/IgorVieira/base-api.svg?branch=master)](https://travis-ci.org/IgorVieira/base-api)
-[![Build status](https://ci.appveyor.com/api/projects/status/k96048byy7dckab9?svg=true)](https://ci.appveyor.com/project/IgorVieira/base-api)
 
 
 ## Requirements
