@@ -1,6 +1,7 @@
 # Base API
 
 [![Build Status](https://travis-ci.org/IgorVieira/base-api.svg?branch=master)](https://travis-ci.org/IgorVieira/base-api)
+[![CircleCI](https://circleci.com/gh/IgorVieira/base-api.svg?style=svg)](https://circleci.com/gh/IgorVieira/base-api)
 
 
 ## Requirements
