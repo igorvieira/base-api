@@ -14,7 +14,7 @@ describe('Route Tasks', () => {
     },
   ];
 
-  beforeEach(done => {
+  beforeEach((done) => {
     Tasks.remove({}, () => Tasks.insertMany(defaultTask, done));
   });
 
@@ -50,7 +50,7 @@ describe('Route Tasks', () => {
 
   describe('GET /api/tasks/:id', () => {
     describe('status 200', () => {
-      it('returns one task', done => {
+      it('returns one task', (done) => {
         request.get(`/api/tasks/${defaultTask[0]._id}`)
           .expect(200)
           .end((err, res) => {
@@ -62,7 +62,7 @@ describe('Route Tasks', () => {
       });
     });
     describe('status 404', () => {
-      it('throws error when task not exist', done => {
+      it('throws error when task not exist', (done) => {
         request.get('/tasks/id-not-exist')
           .expect(404)
           .end(err => done(err));
@@ -73,13 +73,10 @@ describe('Route Tasks', () => {
   describe('DELETE /api/tasks/:id', () => {
     describe('status 204', () => {
       it('removes a task', (done) => {
-        request.delete(`/api/tasks/${ defaultTask[1]._id }`)
+        request.delete(`/api/tasks/${defaultTask[1]._id}`)
           .expect(200)
           .end(err => done(err));
       });
     });
   });
-
-
-
 });
