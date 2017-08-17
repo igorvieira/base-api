@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import config from './config';
 
+
 const app = express();
 
 
@@ -24,16 +25,18 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static('./client'));
+consign({ cwd: 'server', verbose: true })
+  .include('models')
+    .then('middleware')
+    .then('controllers')
+    .then('routes')
+    .into(app);
+
+app.use(app.middleware.auth.initialize());
 app.use(bodyParser.urlencoded(config.bodyParser));
 app.use(bodyParser.json());
 app.use(compression());
 
-consign({ cwd: 'server', verbose: false })
-  .include('models')
-    .then('controllers')
-    .then('routes')
-    .into(app);
 
 app.listen(config.server.port, () => {
   if (!config.isTest) {
@@ -41,5 +44,6 @@ app.listen(config.server.port, () => {
     console.log(`Address: ${config.server.host}:${config.server.port}`);
   }
 });
+
 
 export default app;

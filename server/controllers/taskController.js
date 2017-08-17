@@ -29,7 +29,10 @@ module.exports = (app) => {
   controller.getTaskById = (req, res) => {
     const taskId = req.params.id;
 
-    Tasks.findById(taskId).exec()
+    Tasks.findById({ where: {
+      id: taskId,
+      user_id: req.user.id,
+    } }).exec()
       .then(task => res.json(task))
       .catch(err => new Error(`Error in find Task By Id: ${err}`));
   };
@@ -37,9 +40,13 @@ module.exports = (app) => {
   controller.removeTask = (req, res) => {
     const taskId = req.params.id;
 
-    Tasks.findByIdAndRemove(taskId).exec()
-      .then(task => res.json(task))
-      .catch(err => new Error(`Error in Remove Task By Id: ${err}`));
+    Tasks.findByIdAndRemove({ where: {
+      id: taskId,
+      user_id: req.user.id,
+    } })
+    .exec()
+    .then(task => res.json(task))
+    .catch(err => new Error(`Error in Remove Task By Id: ${err}`));
   };
 
 
