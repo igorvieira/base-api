@@ -1,29 +1,27 @@
 import passport from 'passport';
-import { Strategy, ExtractJwt } from 'passport-jwt';
-import config from '../config/credentials';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import cfg from './jwt_verify';
+
+
+const params = {
+  secretOrKey: cfg.jwtSecret,
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+};
 
 module.exports = (app) => {
-  const Users = app.models.user;
-  const params = {
-    secretOrKey: config.jwtSecret,
-    jwtFromRequest: ExtractJwt.fromAuthHeader(),
-  };
-  const strategy = new Strategy(params, (payload, done) => {
-    Users.findById(payload.id)
-      .then((user) => {
-        if (user) {
-          done(null, {
-            id: user.id,
-            email: user.email,
-          });
-        }
-      })
-      .catch(err => new Error(`${err}`));
-  });
+  const users = app.models.user;
 
+  const strategy = new Strategy(params, (payload, done) => {
+    const user = users[payload.id] || null;
+    if (user) {
+      done(null, { id: user.id });
+    } else {
+      done(new Error('User not found'), null);
+    }
+  });
   passport.use(strategy);
   return {
     initialize: () => passport.initialize(),
-    authenticate: () => passport.authenticate('jwt', config.jwtSession),
+    authenticate: () => passport.authenticate('jwt', cfg.jwtSession),
   };
 };

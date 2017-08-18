@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   controller.listTasks = (req, res) => {
     Tasks.find().exec()
-      .then(task => res.json(task))
+      .then(task => res.json(task[req.user.id]))
       .catch(err => new Error(`Error in list tasks: ${err}`));
   };
 

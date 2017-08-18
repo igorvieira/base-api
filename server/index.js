@@ -25,17 +25,20 @@ app.use((req, res, next) => {
   next();
 });
 
-consign({ cwd: 'server', verbose: true })
+app.use(express.static('./client'));
+app.use(bodyParser.urlencoded(config.bodyParser));
+app.use(bodyParser.json());
+app.use(compression());
+consign({ cwd: 'server', verbose: false })
   .include('models')
     .then('middleware')
     .then('controllers')
     .then('routes')
     .into(app);
 
-app.use(app.middleware.auth.initialize());
-app.use(bodyParser.urlencoded(config.bodyParser));
-app.use(bodyParser.json());
-app.use(compression());
+
+const auth = app.middleware.auth;
+app.use(auth.initialize());
 
 
 app.listen(config.server.port, () => {

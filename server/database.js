@@ -7,10 +7,14 @@ module.exports = (uri) => {
    .connect(uri, {
      useMongoClient: true,
    });
+
   mongoose.connection.on('connected', () => {
     console.log(`Mongoose! Connected in:${uri}`);
   });
 
+  mongoose.connection.on('disconnect', () => {
+    console.log(`Mongoose! Desconnected:${uri}`);
+  });
 
   mongoose.connection.on('disconnect', () => {
     console.log(`Mongoose! Desconnected:${uri}`);
