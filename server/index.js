@@ -28,12 +28,17 @@ app.use(express.static('./client'));
 app.use(bodyParser.urlencoded(config.bodyParser));
 app.use(bodyParser.json());
 app.use(compression());
-
 consign({ cwd: 'server', verbose: false })
   .include('models')
+    .then('middleware')
     .then('controllers')
     .then('routes')
     .into(app);
+
+
+const auth = app.middleware.auth;
+app.use(auth.initialize());
+
 
 app.listen(config.server.port, () => {
   if (!config.isTest) {

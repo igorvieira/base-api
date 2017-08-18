@@ -5,8 +5,8 @@ module.exports = (app) => {
 
   controller.listTasks = (req, res) => {
     Tasks.find().exec()
-      .then(task => res.json(task))
-      .then(err => console.log(`${err}`));
+      .then(task => res.json(task[req.user.id]))
+      .catch(err => new Error(`Error in list tasks: ${err}`));
   };
 
   controller.saveTask = (req, res) => {
@@ -18,10 +18,11 @@ module.exports = (app) => {
     };
     if (taskId) {
       Tasks.update({ _id: taskId }, { $set: data })
-      .then(task => res.json(task), err => console.log(`${err}`));
+      .catch(err => new Error(`Error in edit current Task: ${err}`));
     } else {
       Tasks.create(data)
-      .then(task => res.json(task), err => console.log(`${err}`));
+      .then(task => res.json(task))
+      .catch(err => new Error(`Error in create a new Task: ${err}`));
     }
   };
 
@@ -29,8 +30,8 @@ module.exports = (app) => {
     const taskId = req.params.id;
 
     Tasks.findById(taskId).exec()
-      .then(task => res.json(task),
-      err => console.log(`${err}`));
+      .then(task => res.json(task))
+      .catch(err => new Error(`Error in find Task By Id: ${err}`));
   };
 
   controller.removeTask = (req, res) => {
@@ -38,7 +39,7 @@ module.exports = (app) => {
 
     Tasks.findByIdAndRemove(taskId).exec()
       .then(task => res.json(task))
-      .then(err => console.log(`${err}`));
+      .catch(err => new Error(`Error in Remove Task By Id: ${err}`));
   };
 
 
