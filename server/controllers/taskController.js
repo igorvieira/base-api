@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   controller.listTasks = (req, res) => {
     Tasks.find().exec()
-      .then(task => res.json(task[req.user.id]))
+      .then(task => res.json(task))
       .catch(err => new Error(`Error in list tasks: ${err}`));
   };
 
@@ -28,23 +28,14 @@ module.exports = (app) => {
 
   controller.getTaskById = (req, res) => {
     const taskId = req.params.id;
-
-    Tasks.findById({ where: {
-      id: taskId,
-      user_id: req.user.id,
-    } }).exec()
+    Tasks.findById(taskId)
       .then(task => res.json(task))
       .catch(err => new Error(`Error in find Task By Id: ${err}`));
   };
 
   controller.removeTask = (req, res) => {
     const taskId = req.params.id;
-
-    Tasks.findByIdAndRemove({ where: {
-      id: taskId,
-      user_id: req.user.id,
-    } })
-    .exec()
+    Tasks.findByIdAndRemove(taskId)
     .then(task => res.json(task))
     .catch(err => new Error(`Error in Remove Task By Id: ${err}`));
   };
