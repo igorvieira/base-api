@@ -32,6 +32,10 @@ Open in localhost:3000/api/tasks
   npm test
 ```
 
+## To do
+ - Create a Dockerfile
+ - Make changes for create a auth path
+
 ## License
 
 The MIT License (MIT) Copyright © 2017 Igor Vieira
