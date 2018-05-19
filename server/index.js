@@ -2,6 +2,7 @@ import consign from 'consign';
 import express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import winston from 'winston';
 import config from './config';
 
 require('./database')(config.mongodb.uri);
@@ -19,8 +20,8 @@ consign({ cwd: 'server', verbose: false })
 
 app.listen(config.server.port, () => {
   if (!config.isTest) {
-    console.log('Todo-server Started');
-    console.log(`Address: ${config.server.host}:${config.server.port}`);
+    winston.info('Todo-server Started');
+    winston.info(`Address: ${config.server.host}:${config.server.port}`);
   }
 });
 

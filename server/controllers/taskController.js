@@ -10,14 +10,16 @@ module.exports = (app) => {
   };
 
   controller.saveTask = (req, res) => {
-    const taskId = req.params.id;
+    const { params: { id } } = req;
+    const { body: { activity, done } } = req;
 
     const data = {
-      activity: req.body.activity,
-      done: req.body.done,
+      activity,
+      done,
     };
-    if (taskId) {
-      Tasks.update({ _id: taskId }, { $set: data })
+
+    if (id) {
+      Tasks.update({ _id: id }, { $set: data })
       .catch(err => new Error(`Error in edit current Task: ${err}`));
     } else {
       Tasks.create(data)
@@ -27,15 +29,15 @@ module.exports = (app) => {
   };
 
   controller.getTaskById = (req, res) => {
-    const taskId = req.params.id;
-    Tasks.findById(taskId)
+    const { params: { id } } = req;
+    Tasks.findById(id)
       .then(task => res.json(task))
       .catch(err => new Error(`Error in find Task By Id: ${err}`));
   };
 
   controller.removeTask = (req, res) => {
-    const taskId = req.params.id;
-    Tasks.findByIdAndRemove(taskId)
+    const { params: { id } } = req;
+    Tasks.findByIdAndRemove(id)
     .then(task => res.json(task))
     .catch(err => new Error(`Error in Remove Task By Id: ${err}`));
   };

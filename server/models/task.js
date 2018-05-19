@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 module.exports = () => {
   const tasks = mongoose.Schema({
     activity: { type: String, required: true },

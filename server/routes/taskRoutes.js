@@ -1,13 +1,15 @@
 module.exports = (app) => {
-  const controller = app.controllers.taskController;
+  const { listTasks,
+        saveTask,
+        getTaskById,
+        removeTask } = app.controllers.taskController;
 
   app.route('/api/tasks')
-        .get(controller.listTasks)
-        .post(controller.saveTask);
-
+        .get(listTasks)
+        .post(saveTask);
 
   app.route('/api/tasks/:id')
-        .put(controller.saveTask)
-        .get(controller.getTaskById)
-        .delete(controller.removeTask);
+        .put(saveTask)
+        .get(getTaskById)
+        .delete(removeTask);
 };

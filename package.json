@@ -15,7 +15,8 @@
     "mongo-sanitize": "^1.0.0",
     "mongoose": "^4.11.7",
     "passport": "^0.3.2",
-    "passport-jwt": "^2.0.0"
+    "passport-jwt": "^2.0.0",
+    "winston": "^2.4.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",

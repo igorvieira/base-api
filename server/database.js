@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import winston from 'winston';
+
 
 mongoose.Promise = require('bluebird');
 
@@ -9,24 +11,24 @@ module.exports = (uri) => {
    });
 
   mongoose.connection.on('connected', () => {
-    console.log(`Mongoose! Connected in:${uri}`);
+    winston.log('info', `Mongoose! Connected in:${uri}`);
   });
 
   mongoose.connection.on('disconnect', () => {
-    console.log(`Mongoose! Desconnected:${uri}`);
+    winston.log(`Mongoose! Desconnected:${uri}`);
   });
 
   mongoose.connection.on('disconnect', () => {
-    console.log(`Mongoose! Desconnected:${uri}`);
+    winston.log(`Mongoose! Desconnected:${uri}`);
   });
 
   mongoose.connection.on('error', (erro) => {
-    console.log(`Mongoose!Erro connection${erro}`);
+    winston.log(`Mongoose!Erro connection${erro}`);
   });
 
   process.on('SIGINT', () => {
     mongoose.connection.close(() => {
-      console.log('Good bye =]');
+      winston.log('Good bye =]');
       process.exit(0);
     });
   });
