@@ -3,11 +3,21 @@ module.exports = (app) => {
 
   const controller = {};
 
-  controller.listTasks = (req, res) => {
+  const updateTask = (id, data) => {
+    Tasks.update({ _id: id }, { $set: data })
+      .catch(err => new Error(`Error in edit current Task: ${err}`));
+  };
+
+  const createATask = (data, res) => {
+    Tasks.create(data)
+      .then(task => res.json(task))
+      .catch(err => new Error(`Error in create a new Task: ${err}`));
+  };
+
+  controller.listTasks = (req, res) =>
     Tasks.find().exec()
       .then(task => res.json(task))
       .catch(err => new Error(`Error in list tasks: ${err}`));
-  };
 
   controller.saveTask = (req, res) => {
     const { params: { id } } = req;
@@ -18,14 +28,7 @@ module.exports = (app) => {
       done,
     };
 
-    if (id) {
-      Tasks.update({ _id: id }, { $set: data })
-      .catch(err => new Error(`Error in edit current Task: ${err}`));
-    } else {
-      Tasks.create(data)
-      .then(task => res.json(task))
-      .catch(err => new Error(`Error in create a new Task: ${err}`));
-    }
+    return id ? updateTask(id, data) : createATask(data, res);
   };
 
   controller.getTaskById = (req, res) => {
