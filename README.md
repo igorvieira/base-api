@@ -11,7 +11,7 @@
  - NPM >= 5.0.1
 
 
-## Usage
+## Usage on development
 
 ```
  git clone https://github.com/IgorVieira/base-api.git
@@ -21,7 +21,7 @@
 ```
 
 ```
- npm start
+ npm run dev
 ```
 
 Open in localhost:3000/api/tasks
